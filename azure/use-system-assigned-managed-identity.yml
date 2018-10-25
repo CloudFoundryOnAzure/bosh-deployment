@@ -1,0 +1,23 @@
+---
+- type: replace
+  path: /instance_groups/name=bosh/properties/azure/credentials_source?
+  value: managed_identity
+
+- type: remove
+  path: /instance_groups/name=bosh/properties/azure/tenant_id
+
+- type: remove
+  path: /instance_groups/name=bosh/properties/azure/client_id
+
+- type: remove
+  path: /instance_groups/name=bosh/properties/azure/client_secret
+
+- type: replace
+  path: /instance_groups/name=bosh/properties/azure/default_managed_identity?
+  value:
+    type: SystemAssigned
+
+- type: replace
+  path: /resource_pools/name=vms/cloud_properties?/managed_identity?
+  value:
+    type: SystemAssigned
